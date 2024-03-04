@@ -56,6 +56,14 @@ class TestSensors(unittest.TestCase):
         #
         # sys.stdout.write(str(mock_print.call_args) + "\n")
         # sys.stdout.write(str(mock_print.call_args_list) + "\n")
+     def test_system_main(self):
+        sys.argv = ['sensors_main.py','18','18']
+        expected_output = "Error: Incorrect command line arguments.\n"
+        sys.stdout =stringIO()
+        sensors_main.main()
+        output=sys.stdout.getvalue()
+        self.stdout = sys._stdout_
+        self.assertEqual(output, expected_output)
 
 if __name__ == '__main__':
     unittest.main()
